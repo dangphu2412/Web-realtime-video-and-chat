@@ -1,11 +1,11 @@
 // @ts-check
 import { isEmpty } from 'lodash';
-import { UnAuthorized, JwtStrategy, OauthStrategy } from '../../utils';
+import { UnAuthorized, JwtStrategy } from '../../utils';
 
 export class Authorization {
   constructor() {
     this.strategy = JwtStrategy;
-    this.oauthStrategy = OauthStrategy;
+    // this.oauthStrategy = OauthStrategy;
   }
 
   auth(req, res, next) {
@@ -29,43 +29,25 @@ export class Authorization {
     return next();
   }
 
-  authNotRequired(req, res, next) {
-    let token = this._getToken(req);
-    if (token) {
-        if (token.startsWith('Bearer ')) {
-            // Remove Bearer from string
-            token = token.slice(7, token.length);
-        }
-        const user = this.strategy.decode(token);
+  // async oauth(req, res, next) {
+  //   const oAuthToken = this._getOauthToken(req);
 
-        if (isEmpty(user)) {
-          throw new UnAuthorized();
-        }
+  //   const user = await this.oauthStrategy.verify(oAuthToken);
 
-        req.user = user;
-    }
-    return next();
-  }
+  //   if (!user) {
+  //       throw new UnAuthorized('Đăng nhập gặp vấn đề gì rồi !');
+  //   }
 
-  async oauth(req, res, next) {
-    const oAuthToken = this._getOauthToken(req);
+  //   req.user = user;
 
-    const user = await this.oauthStrategy.verify(oAuthToken);
-
-    if (!user) {
-        throw new UnAuthorized('Đăng nhập gặp vấn đề gì rồi !');
-    }
-
-    req.user = user;
-
-    return next();
-  }
+  //   return next();
+  // }
 
   _getToken(req) {
     return req.headers['authorization'] || req.headers['x-access-token'];
   }
 
-  _getOauthToken(req) {
-    return req.headers['x-access-oauth'];
-  }
+  // _getOauthToken(req) {
+  //   return req.headers['x-access-oauth'];
+  // }
 }

@@ -1,9 +1,9 @@
 import { UNAUTHORIZED } from 'http-status';
 import { HttpError } from './http.error';
-import { errorMessage } from '../../common/constants';
+import { ERROR } from '../../common/constants';
 
 export class UnAuthorized extends HttpError {
-  constructor(message = errorMessage.UNAUTHORIZED) {
+  constructor(message = ERROR.UNAUTHORIZED) {
     super(message, UNAUTHORIZED);
   }
 }

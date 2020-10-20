@@ -3,4 +3,4 @@ dist
 package.json
 package-lock.json
 yarn.lock
-src/public/vendors
+src/resources/public/vendors

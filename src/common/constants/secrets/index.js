@@ -55,10 +55,10 @@ export class Secret {
     if (
       isEmpty(SERVER)
       && isEmpty(JWT_CONFIG)
-      && isEmpty(GOOGLE_CRED)
-      && isEmpty(MAIL_CONFIG)
-      && isEmpty(CLOUDINARY_CONFIG)
-      && isEmpty(SHEET_CONFIG)
+      // && isEmpty(GOOGLE_CRED)
+      // && isEmpty(MAIL_CONFIG)
+      // && isEmpty(CLOUDINARY_CONFIG)
+      // && isEmpty(SHEET_CONFIG)
       && isEmpty(SALT_ROUNDS)
     ) {
       console.log('Missing secrets in .env ! Please check in \'src/common/constants/secrets \'');

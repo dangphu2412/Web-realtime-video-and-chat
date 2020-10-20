@@ -7,7 +7,7 @@ import {
 import { OK } from 'http-status';
 import { Authorization } from '../../common/guards/authorize.guard';
 import { GuardAccess } from '../../common/guards/ACL.guard';
-import { logger } from '../../utils';
+import { logger } from '../../utils/logger';
 import { SwaggerNode } from '../../libs/swagger';
 
 export class Handler {

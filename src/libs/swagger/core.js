@@ -99,11 +99,6 @@ export class SwaggerNode {
   }
 
   static declareModel(dtoName, properties) {
-    if (!SwaggerNode.instance.components) {
-      SwaggerNode.instance.components = {
-        schemas: {},
-      };
-    }
     SwaggerNode.instance.components.schemas[dtoName] = {
       type: 'object',
       properties,
@@ -163,6 +158,12 @@ export class SwaggerNode {
   static initAuth(auth) {
     if (auth) {
       const security = 'securitySchemes';
+      if (!SwaggerNode.instance.components) {
+        SwaggerNode.instance.components = {
+          schemas: {},
+          securitySchemes: {},
+        };
+      }
       SwaggerNode.instance.components[security] = {
           bearerAuth: {
               type: 'http',

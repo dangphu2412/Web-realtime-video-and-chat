@@ -1,9 +1,9 @@
 import { FORBIDDEN } from 'http-status';
 import { HttpError } from './http.error';
-import { errorMessage } from '../../common/constants';
+import { ERROR } from '../../common/constants';
 
 export class Forbidden extends HttpError {
-  constructor(message = errorMessage.FORBIDDEN) {
+  constructor(message = ERROR.FORBIDDEN) {
     super(message, FORBIDDEN);
   }
 }
