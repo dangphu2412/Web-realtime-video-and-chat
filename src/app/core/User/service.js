@@ -6,6 +6,10 @@ class Service extends BaseService {
     super();
     this.repository = UserRepository;
   }
+
+  findAll(req) {
+    return this.repository.findAll();
+  }
 }
 
 export const UserService = new Service();

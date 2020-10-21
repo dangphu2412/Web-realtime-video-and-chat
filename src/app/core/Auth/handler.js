@@ -7,13 +7,18 @@ export class AuthHandler {
     Handler.registerRoutes(
       {
         router,
-        prefixPath: '/auth',
+        prefixPath: '/api/auth',
       },
       [
         {
-          route: '/',
-          method: 'GET',
-          controller: controller.findAll.bind(controller),
+          route: '/v1/register',
+          method: 'POST',
+          controller: controller.createOne.bind(controller),
+        },
+        {
+          route: '/v1/login',
+          method: 'POST',
+          controller: controller.login.bind(controller),
         },
       ],
     );

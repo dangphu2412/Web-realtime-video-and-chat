@@ -11,6 +11,11 @@ import initRoutes from '../app/routes';
 import { mongoConnection } from './database';
 
 export class App {
+  /**
+   *
+   * @param {import('express').Router} app
+   * @param {*} environment
+   */
   constructor(app, environment) {
     this.app = app;
     this.env = environment;
@@ -44,7 +49,7 @@ export class App {
   }
 
   loadApi() {
-    this.app.use(initRoutes);
+    this.app.use('/', initRoutes);
   }
 
   loadErrorHandler() {

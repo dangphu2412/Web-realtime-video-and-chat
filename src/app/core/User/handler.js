@@ -7,11 +7,11 @@ export class UserHandler {
     Handler.registerRoutes(
       {
         router,
-        prefixPath: '/users',
+        prefixPath: '/api/users',
       },
       [
         {
-          route: '/',
+          route: '/v1',
           method: 'GET',
           controller: controller.findAll.bind(controller),
         },

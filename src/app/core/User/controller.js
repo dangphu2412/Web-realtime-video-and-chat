@@ -6,6 +6,10 @@ class Controller extends BaseController {
     super();
     this.service = UserService;
   }
+
+  findAll(req) {
+    return this.service.findAll(req);
+  }
 }
 
 export const UserController = new Controller();
