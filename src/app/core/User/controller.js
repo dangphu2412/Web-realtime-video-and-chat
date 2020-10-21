@@ -8,7 +8,8 @@ class Controller extends BaseController {
   }
 
   findAll(req) {
-    return this.service.findAll(req);
+    const { query } = req;
+    return this.service.findAll(query);
   }
 }
 

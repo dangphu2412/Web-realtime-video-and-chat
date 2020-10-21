@@ -7,8 +7,8 @@ class Service extends BaseService {
     this.repository = UserRepository;
   }
 
-  findAll(req) {
-    return this.repository.findAll();
+  findAll(query) {
+    return this.repository.findAll(query);
   }
 }
 

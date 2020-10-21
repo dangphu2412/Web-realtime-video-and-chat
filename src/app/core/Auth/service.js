@@ -11,8 +11,25 @@ class Service extends BaseService {
     this.jwtService = JwtStrategy;
   }
 
-  createOne(body) {
-    return this.repository.createOne(body);
+  getUserResponse(user) {
+    const token = this.jwtService.sign({
+      payload: {
+        userId: user.id,
+      },
+    });
+    return {
+      token,
+      info: this.repository.toUserResponse(user),
+    };
+  }
+
+  async createOne(body) {
+    const found = await this.repository.findByEmail(body.email);
+    if (found) {
+      throw new NotFound('This email has been registed');
+    }
+    const user = await this.repository.createOne(body);
+    return this.getUserResponse(user);
   }
 
   async login(body) {
@@ -23,15 +40,7 @@ class Service extends BaseService {
     if (this.bcryptService.compareSync(user.password, body.password)) {
       throw new Conflict('Your password is not right');
     }
-    const token = this.jwtService.sign({
-      payload: {
-        userId: user.id,
-      },
-    });
-    return {
-      token,
-      info: this.repository.toUserResponse(user),
-    };
+    return this.getUserResponse(user);
   }
 }
 

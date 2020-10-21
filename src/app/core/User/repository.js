@@ -11,8 +11,11 @@ class Repository extends BaseRepository {
     return this.model.create(dto);
   }
 
-  findAll() {
-    return this.model.find();
+  findAll(query) {
+    return this.model
+      .find()
+      .limit(parseInt(query.limit, 10))
+      .skip(parseInt(query.offset, 10));
   }
 
   findByEmail(email) {
