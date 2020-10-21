@@ -9,6 +9,7 @@ import debugLib from 'debug';
 import http from 'http';
 import app from '../main';
 import { logger } from '../utils';
+import { SocketService } from '../app/core/Socket/index.service';
 
 const debug = debugLib('messenger:server');
 /**
@@ -23,6 +24,7 @@ app.set('port', port);
  */
 
 const server = http.createServer(app);
+SocketService.init(server);
 
 /**
  * Listen on provided port, on all network interfaces.
