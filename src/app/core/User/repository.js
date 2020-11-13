@@ -12,8 +12,17 @@ class Repository extends BaseRepository {
   }
 
   findAll(query) {
+    const { search } = query;
+    let filter = {};
+    if (search) {
+      filter = {
+        $text: {
+          $search: search,
+        },
+      };
+    }
     return this.model
-      .find()
+      .find(filter)
       .limit(parseInt(query.limit, 10))
       .skip(parseInt(query.offset, 10));
   }

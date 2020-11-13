@@ -33,5 +33,13 @@ export class SocketService {
     socket.on('sendMess', msg => {
       socket.broadcast.emit('receiveMess', msg);
     });
+    socket.on('call-user', peerInfo => {
+      const { to } = peerInfo;
+      socket.to(to).emit('call-made', peerInfo);
+    });
+    socket.on('make-answer', peerInfo => {
+      const { to } = peerInfo;
+      socket.to(to).emit('answer-made', peerInfo);
+    });
   }
 }
