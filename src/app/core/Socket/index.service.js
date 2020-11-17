@@ -41,5 +41,8 @@ export class SocketService {
       const { to } = peerInfo;
       socket.to(to).emit('answer-made', peerInfo);
     });
+    socket.on('sendIceCandidate', candidate => {
+      socket.broadcast.emit('listenIceCanidate', candidate);
+    });
   }
 }

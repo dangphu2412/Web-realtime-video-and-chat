@@ -1,9 +1,8 @@
 import { Handler } from '../../concept/handler';
-import { AuthController } from './controller';
+import { AuthController as controller } from './controller';
 
 export class AuthHandler {
   static register(router) {
-    const controller = AuthController;
     Handler.registerRoutes(
       {
         router,
