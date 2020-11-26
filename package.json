@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "This is base express build on top of sequelize",
   "main": "main.js",
+  "engines": {
+    "node": "14.x",
+    "npm": "6.x"
+  },
   "scripts": {
     "lint": "eslint --fix --ext .js .",
     "dev": "nodemon --exec babel-node ./src/bin/www.js",
@@ -14,7 +18,8 @@
     "migrate:rollback": "sequelize-cli db:migrate:undo:all",
     "migrate:reset": "yarn migrate:rollback && yarn migrate:latest && yarn seed:run",
     "seed:run": "sequelize db:seed:all",
-    "seed:down": "sequelize db:seed:undo"
+    "seed:down": "sequelize db:seed:undo",
+    "heroku-postbuild": "yarn install && yarn migrate:reset && yarn run build"
   },
   "repository": {
     "type": "git",
